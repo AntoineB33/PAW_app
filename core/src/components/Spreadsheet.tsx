@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import DataGrid from 'react-data-grid';
+import { DataGrid } from 'react-data-grid';
 import { loadCells, saveCell } from '../db/indexedDB';
 
 const COLUMNS = Array.from({ length: 26 }, (_, i) => ({
@@ -33,6 +33,7 @@ export default function Spreadsheet() {
       setRows(
         Array.from({ length: ROWS_COUNT }, (_, i) => 
           createRow(i, cellMap)
+        )
       );
       setIsLoading(false);
     };

@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:core": "cd core && npm run dev",
+    "build:core": "cd core && npm run build",
+    "desktop:dev": "cd desktop && npm run tauri dev",
+    "desktop:build": "cd desktop && npm run tauri build",
+    "mobile:sync": "cd core && npx cap sync",
+    "mobile:android": "cd core && npx cap open android"
   },
   "repository": {
     "type": "git",
@@ -16,5 +21,11 @@
     "url": "https://github.com/AntoineB33/PAW_app/issues"
   },
   "homepage": "https://github.com/AntoineB33/PAW_app#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "@capacitor/core": "^7.4.1",
+    "@tauri-apps/api": "^2.6.0",
+    "dexie": "^4.0.11",
+    "react-data-grid": "^7.0.0-beta.56"
+  }
 }

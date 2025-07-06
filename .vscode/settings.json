@@ -1,0 +1,12 @@
+{
+  "git.ignoreLimitWarning": true,
+  "files.exclude": {
+    "**/node_modules": true,
+    "dist": true,
+    "build": true,
+    ".vite": true,
+    "coverage": true,
+    ".DS_Store": true
+  },
+  "typescript.tsdk": "core/node_modules/typescript/lib"
+}

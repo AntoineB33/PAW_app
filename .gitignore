@@ -1,0 +1,41 @@
+# General ignores
+.DS_Store
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+.env
+.env.local
+.env.*.local
+.vscode/  # (except recommended extensions)
+.idea/
+
+# Dependency directories
+node_modules/
+dist/
+build/
+target/
+.pnp
+.pnp.js
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Tauri ignores
+/src-tauri/target/
+/src-tauri/Cargo.lock
+
+# Capacitor ignores
+/android/
+/ios/
+capacitor.config.json
+
+# Vite cache
+.vite/
