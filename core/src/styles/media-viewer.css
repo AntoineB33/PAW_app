@@ -1,0 +1,38 @@
+.media-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.media-container {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.control-button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.control-button:hover {
+  background-color: #555;
+}
+
+/* Hide controls after 3 seconds of inactivity */
+.media-viewer:not(:hover) .control-button {
+  opacity: 0;
+  transition: opacity 0.5s;
+}

@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { DataGrid } from 'react-data-grid';
+import DataGrid, { Column, TextEditor, Row } from 'react-data-grid';
+import 'react-data-grid/lib/styles.css';
 import { loadCells, saveCell } from '../db/indexedDB';
 
-const COLUMNS = Array.from({ length: 26 }, (_, i) => ({
+interface SpreadsheetRow {
+  id: number;
+  [key: string]: string | number;
+}
+
+const COLUMNS: Column<SpreadsheetRow>[] = Array.from({ length: 26 }, (_, i) => ({
   key: String.fromCharCode(65 + i),
-  name: String.fromCharCode(65 + i)
+  name: String.fromCharCode(65 + i),
+  editor: TextEditor
 }));
 
 const ROWS_COUNT = 100;
 
-const createRow = (rowIndex: number, cells: Record<string, string>) => ({
+const createRow = (rowIndex: number, cells: Record<string, string>): SpreadsheetRow => ({
   id: rowIndex,
   ...Object.fromEntries(
     COLUMNS.map(col => [
@@ -20,7 +27,7 @@ const createRow = (rowIndex: number, cells: Record<string, string>) => ({
 });
 
 export default function Spreadsheet() {
-  const [rows, setRows] = useState<any[]>([]);
+  const [rows, setRows] = useState<SpreadsheetRow[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -41,7 +48,7 @@ export default function Spreadsheet() {
     initGrid();
   }, []);
 
-  const handleCellChange = async (changes: any[]) => {
+  const handleCellChange = async (changes: { row: SpreadsheetRow, column: Column<SpreadsheetRow>, value: string }[]) => {
     const updates = changes.map(async ({ row, column, value }) => {
       const cellId = `${column.key}${row.id}`;
       await saveCell(cellId, value);
@@ -61,7 +68,7 @@ export default function Spreadsheet() {
       columns={COLUMNS}
       rows={rows}
       onRowsChange={handleCellChange}
-      rowKeyGetter={row => row.id}
+      rowKeyGetter={(row: SpreadsheetRow) => row.id}
       className="fill-grid"
     />
   );
