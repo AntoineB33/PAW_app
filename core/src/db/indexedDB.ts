@@ -1,6 +1,6 @@
 import Dexie from 'dexie';
 
-interface Cell {
+export interface Cell {
   id: string;
   value: string;
 }
